@@ -134,7 +134,7 @@ def perform_bulk_index(host, index_name, doc_type, doc_fetch, docs_per_chunk, by
 def cli(index_name, delete_index, mapping_file, settings_file, doc_type, host,docs_per_chunk, bytes_per_chunk, parallel, quiet, parser,
         config,user,passwd):
 
-    with open(config, 'rb') as f:
+    with open(config) as f:
         con = json.loads(f.read())
     host = con['db']
     echo('Using host: ' + host, quiet)
