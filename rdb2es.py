@@ -57,7 +57,7 @@ def documents_from_file(es,collection,quiet,parser_fun):
 
     if   DB['type'] == "mysql":
         result = cur.fetchall()
-        
+
     def all_docs():
         count = 0
         for row in result:
@@ -136,7 +136,7 @@ def cli(index_name, delete_index, mapping_file, settings_file, doc_type, host,do
         collection = db.connect(DB['con_str'])
     else:
         db = import_module('MySQLdb')
-        collection = db.connect(DB['con_str'][0],DB['con_str'][1],DB['con_str'][2],DB['con_str'][3])
+        collection = db.connect(DB['con_str'][0],DB['con_str'][1],DB['con_str'][2],DB['con_str'][3],charset=DB['con_str'][4])
 
     if delete_index:   # 删除索引
         try:
