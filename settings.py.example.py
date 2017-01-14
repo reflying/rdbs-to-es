@@ -10,7 +10,7 @@ ES_CONF = {
 
 DB =  {
     'type':'oracle',
-    'con_str':'V_DG/V_DG@test@192.168.3.188:1521/orcl',
+    'con_str':'V_DG/V_DG@192.168.3.188:1521/orcl',
     'sql_type':'single',
     'sql':'select * from  tmp_org',
     'fields':[]
