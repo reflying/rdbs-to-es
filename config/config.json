@@ -1,0 +1,39 @@
+{
+    "es_config": {
+        "desc": "ES连接地址",
+        "host": "http://121.199.49.215:9200"
+    },
+    "db": {
+        "desc": "数据库连接参数",
+        "type": "oracle",
+        "con_str": "192.168.3.188:1521/orcl",
+        "sql_type": "single",
+        "sql": "select * from  tmp_org",
+        "fields": [ ]
+    },
+    "db_oracle": {
+        "desc": "oracle样例",
+        "type": "oracle",
+        "con_str": "192.168.0.113:1521/orcl",
+        "sql_type": "single",
+        "sql": "select * from  table_name",
+        "fields": [ ]
+    },
+    "db_mysql": {
+        "desc": "mysql样例",
+        "type": "mysql",
+        "con_str": [
+            "192.168.0.113:3306",
+            "database_name",
+            "utf8"
+        ],
+        "sql_type": "join",
+        "sql": "select a.userid,a.username,a.email,b.interest from  table_name_a a,table_name_b b where a.id = b.pid",
+        "fields": [
+            "userid",
+            "username",
+            "email",
+            "interest"
+        ]
+    }
+}

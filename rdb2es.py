@@ -41,21 +41,21 @@ def echo(message, quiet=False):
     if not quiet:
         click.echo(message)
 
-def documents_from_file(es,collection,quiet,parser_fun):
+def documents_from_file(es,collection,quiet,parser_fun,con):
 
 
     cur = collection.cursor()
-    result = cur.execute(DB['sql'])
+    result = cur.execute(con['db']['sql'])
 
     # 获取数据表的列名
-    if len(DB['fields']) == 0 :
+    if len(con['db']['fields']) == 0 :
         try:
             fields = [i[0].lower() for i in cur.description]
         except:
             fields = []
     fields_len = len(fields)
 
-    if   DB['type'] == "mysql":
+    if   con['db']['type'] == "mysql":
         result = cur.fetchall()
 
     def all_docs():
@@ -110,9 +110,9 @@ def perform_bulk_index(host, index_name, doc_type, doc_fetch, docs_per_chunk, by
               help='JSON mapping file for index')
 @click.option('--settings-file', required=False,
               help='Settings file for es index')
-@click.option('--host', default=ES_CONF['host'], required=False,
-              help='The Elasticsearch host (%s)' % ES_CONF['host'])
-@click.option('--docs-per-chunk', default=5000, required=False,
+@click.option('--host', required=False,
+              help='The Elasticsearch host (%s)')
+@click.option('--docs-per-chunk', default=2000, required=False,
               help='The documents per chunk to upload (5000)')
 @click.option('--bytes-per-chunk', default=100000, required=False,
               help='The bytes per chunk to upload (100000)')
@@ -124,19 +124,28 @@ def perform_bulk_index(host, index_name, doc_type, doc_fetch, docs_per_chunk, by
               help='Minimize console output')
 @click.option('--parser', default=None, required=False,
               help='格式解释器, 对应parse目录下')
-
+@click.option('--config-file', required=True,
+              help='数据库及ES相关配置文件')
+@click.option('--user', required=True,
+              help='数据库用户名')
+@click.option('--passwd', required=True,
+              help='数据库密码')
 @click.version_option(version=__version__, )
-def cli(index_name, delete_index, mapping_file, settings_file, doc_type, host,docs_per_chunk, bytes_per_chunk, parallel, quiet, parser):
+def cli(index_name, delete_index, mapping_file, settings_file, doc_type, host,docs_per_chunk, bytes_per_chunk, parallel, quiet, parser,
+        config,user,passwd):
 
+    with open(config, 'rb') as f:
+        con = json.load(f)
+    host = con['db']
     echo('Using host: ' + host, quiet)
     es = ElasticSearch(host)
 
-    if DB['type'] == "oracle":
+    if  con['db']['type'] == "oracle":
         db = import_module('cx_Oracle')
-        collection = db.connect(DB['con_str'])
+        collection = db.connect(user,passwd,con['db']['con_str'])
     else:
         db = import_module('MySQLdb')
-        collection = db.connect(DB['con_str'][0],DB['con_str'][1],DB['con_str'][2],DB['con_str'][3],charset=DB['con_str'][4])
+        collection = db.connect(con['db']['con_str'][0],user,passwd,con['db']['con_str'][1],charset=con['db']['con_str'][2])
 
     if delete_index:   # 删除索引
         try:
@@ -169,7 +178,7 @@ def cli(index_name, delete_index, mapping_file, settings_file, doc_type, host,do
         # 加载解释函数
         parser_fun = import_module(PARSER_PATH + '.' + parser)
 
-    documents = documents_from_file(es, collection,quiet, parser_fun)
+    documents = documents_from_file(es, collection,quiet, parser_fun,con)
 
     perform_bulk_index(host, index_name, doc_type, documents, docs_per_chunk,bytes_per_chunk, parallel)
 

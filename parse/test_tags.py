@@ -15,7 +15,7 @@ now = date.today()
 weekday = ["1周一", "2周二", "3周三", "4周四", "5周五", "6周六", "7周日"]
 
 
-def row_parser(row,city):
+def row_parser(row):
     '''格式解释
     @param dict row 其中一行, 格式：{'field1': 'value1', 'field2': 'value2'}
     @return 格式：{'field1': 'value1', 'field2': 'value2'}
