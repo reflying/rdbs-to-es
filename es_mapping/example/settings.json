@@ -1,0 +1,12 @@
+{
+    "settings": {
+        "analysis": {
+            "analyzer": {
+                "tags_analyzer": {
+                    "type": "pattern",
+                    "pattern": ";"
+                }
+            }
+        }
+    }
+}
