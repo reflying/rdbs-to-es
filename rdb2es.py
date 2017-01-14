@@ -135,7 +135,7 @@ def cli(index_name, delete_index, mapping_file, settings_file, doc_type, host,do
         config,user,passwd):
 
     with open(config, 'rb') as f:
-        con = json.load(f)
+        con = json.loads(f.read())
     host = con['db']
     echo('Using host: ' + host, quiet)
     es = ElasticSearch(host)

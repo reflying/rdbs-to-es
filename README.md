@@ -38,13 +38,17 @@ python rdb2es.py --index-name=tmp_org --doc-type=tmp_org   --user=oracle --passw
 
 ```
 
+
+
 ### 常用的类型
 
-#### 字符串:string
-#### 数字:long, integer, short, byte, double, float
-#### 日期:date
-#### 布尔型:boolean
-#### 二进制:binary
+##### 字符串:string
+##### 数字:long, integer, short, byte, double, float
+##### 日期:date
+##### 布尔型:boolean
+##### 二进制:binary
+
+
 
 ### ES字段类型汇总
 > https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-types.html
