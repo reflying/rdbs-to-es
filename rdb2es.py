@@ -65,7 +65,7 @@ def documents_from_file(es,collection,quiet,parser_fun):
                         doc['f' + str(index)] = v
                     else:
                         doc[fields[index]] = v
-
+                count += 1
                 if count % 5000 == 0:
                     echo('Sent documents: ' + str(count), quiet)
 
