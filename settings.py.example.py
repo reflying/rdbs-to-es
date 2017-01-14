@@ -30,7 +30,7 @@ DB_ORACLE =  {
 
 DB_MYSQL =  {
     'type':'mysql',
-    'con_str':'"192.168.0.113:3306","username","password","database_name"',
+    'con_str':["192.168.0.113:3306","username","password","database_name"],
     'sql_type':'join',
     'sql':'select a.userid,a.username,a.email,b.interest from  table_name_a a,table_name_b b where a.id = b.pid',
     'fields':['userid','username','email','interest']

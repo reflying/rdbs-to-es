@@ -130,8 +130,10 @@ def cli(index_name, delete_index, mapping_file, settings_file, doc_type, host,do
 
     if DB['type'] == "oracle":
         db = import_module('cx_Oracle')
+        collection = db.connect(DB['con_str'])
     else:
         db = import_module('MySQLdb')
+        collection = db.connect(DB['con_str'][0],DB['con_str'][1],DB['con_str'][2],DB['con_str'][3])
 
     collection = db.connect(DB['con_str'])
 
