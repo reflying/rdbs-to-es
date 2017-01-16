@@ -166,11 +166,8 @@ def cli(index_name, delete_index, mapping_file, settings_file, doc_type, host,do
         echo('Index ' + index_name + ' already exists', quiet)
 
     echo('Using document type: ' + doc_type, quiet)
-    if mapping_file:
-        echo('Applying mapping from: ' + mapping_file, quiet)
-        with open(mapping_file) as f:
-            mapping = json.loads(f.read())
-        es.put_mapping(index_name, doc_type, mapping)
+
+    es.put_mapping(index_name, doc_type, con['mapping'])
 
     parser_fun = None
     if parser is not None:

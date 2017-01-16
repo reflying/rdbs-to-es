@@ -35,5 +35,17 @@
             "email",
             "interest"
         ]
+    },
+    "mapping": {
+        "properties": {
+            "name": {
+                "type": "string",
+                "index": "not_analyzed"
+            },
+             "username": {
+                "type": "string",
+                "index": "not_analyzed"
+            }
+        }
     }
 }
