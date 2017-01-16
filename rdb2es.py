@@ -177,9 +177,10 @@ def cli(index_name, delete_index, mapping_file, settings_file, doc_type, host,do
     documents = documents_from_file(es, collection,quiet, parser_fun,con)
 
     perform_bulk_index(host, index_name, doc_type, documents, docs_per_chunk,bytes_per_chunk, parallel)
+    print  "end:" + time.strftime(ISOTIMEFORMAT, time.localtime()) + '/n all records import complete.'
 
 if __name__ == "__main__":
     print  "start:" +time.strftime(ISOTIMEFORMAT, time.localtime())
     cli()
-    print  "end:" + time.strftime(ISOTIMEFORMAT, time.localtime())+'/n all records import complete.'
+
     
