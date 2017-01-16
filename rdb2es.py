@@ -53,6 +53,8 @@ def documents_from_file(es,collection,quiet,parser_fun,con):
             fields = [i[0].lower() for i in cur.description]
         except:
             fields = []
+    else:
+        fields = con['db']['fields']
     fields_len = len(fields)
 
     if   con['db']['type'] == "mysql":
