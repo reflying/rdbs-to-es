@@ -51,3 +51,33 @@ python rdb2es.py --index-name=tmp_org --doc-type=tmp_org  --user=oracle --passwd
 
 ### ES字段类型汇总
 > https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-types.html
+
+### 数据库配置样例
+
+``` sh
+
+    "db_oracle": {
+        "desc": "oracle样例",
+        "type": "oracle",
+        "con_str": "192.168.0.113:1521/orcl",
+        "sql": "select * from  table_name",
+        "fields": [ ]
+    },
+    "db_mysql": {
+        "desc": "mysql样例",
+        "type": "mysql",
+        "con_str": [
+            "192.168.0.113:3306",
+            "database_name",
+            "utf8"
+        ],
+        "sql": "select a.userid,a.username,a.email,b.interest from  table_name_a a,table_name_b b where a.id = b.pid",
+        "fields": [
+            "userid",
+            "username",
+            "email",
+            "interest"
+        ]
+    }
+
+```
