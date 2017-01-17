@@ -56,14 +56,14 @@ python rdb2es.py --index-name=tmp_org --doc-type=tmp_org  --user=oracle --passwd
 
 ``` sh
 
-    "db_oracle": {
+    "db": {
         "desc": "oracle样例",
         "type": "oracle",
         "con_str": "192.168.0.113:1521/orcl",
         "sql": "select * from  table_name",
         "fields": [ ]
     },
-    "db_mysql": {
+    "db": {
         "desc": "mysql样例",
         "type": "mysql",
         "con_str": [
