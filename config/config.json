@@ -1,13 +1,13 @@
 {
     "es_config": {
         "desc": "ES连接地址",
-        "host": "http://121.199.49.215:9200"
+        "host": "http://127.0.0.1:9200"
     },
     "db": {
         "desc": "数据库连接参数",
         "type": "oracle",
-        "con_str": "192.168.3.188:1521/orcl",
-        "sql": "select * from  tmp_org",
+        "con_str": "10.2.89.190:1521:orcl",
+        "sql": "select * from  action_catalog_id",
         "fields": [ ]
     },
     "mapping": {
