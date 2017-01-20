@@ -18,8 +18,6 @@ from importlib import import_module
 import time
 import os
 import csv
-from settings import *
-
 
 os.environ['NLS_LANG'] = 'SIMPLIFIED CHINESE_CHINA.UTF8'  # oracle中文编码
 
