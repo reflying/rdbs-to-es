@@ -6,7 +6,7 @@
     "db": {
         "desc": "数据库连接参数",
         "type": "oracle",
-        "con_str": "10.2.89.190:1521:orcl",
+        "con_str": "10.2.89.190:1521/orcl",
         "sql": "select * from  t_khda_info_temp",
         "fields": [ ]
     },
